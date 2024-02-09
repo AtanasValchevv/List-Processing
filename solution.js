@@ -33,6 +33,13 @@ function processCommand(cmd) {
       return prepend(cmdArgs);
       break;
 
+    case "delete":
+      return deleteIndex(cmdArgs);
+      break;
+
+    case "end":
+      console.log("Finished");
+      break;
     default:
       return "Error: invalid command";
       break;
@@ -46,3 +53,12 @@ function append(args) {
 function prepend(args) {
   list = list.unshift(args);
 }
+
+function deleteIndex(index, list) {
+  if (index < 0 || index >= list.length) {
+      console.log(`Error: invalid index ${index}`);
+      return;
+  }
+  list.splice(index, 1);
+}
+
