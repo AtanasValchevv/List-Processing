@@ -28,12 +28,23 @@ function processCommand(cmd) {
     case "append":
       return append(cmdArgs);
       break;
-
-    // TODO: process more commands here ...
-
-    // case "anotherCommand":
-    //   return anotherCommand(cmdArgs);
-    //   break;
+      
+    case "insert":
+      let index = parseInt(cmdArgs.shift());
+      let string = cmdArgs.join(" ");
+      return insert(index, string);
+      break;
+      
+    case "roll":
+      let direction = cmdArgs.shift();
+      if (direction === "left") {
+        return rollLeft();
+      } else if (direction === "right") {
+        return rollRight();
+      } else {
+        return "Error: invalid direction for roll command";
+      }
+      break;
 
     default:
       return "Error: invalid command";
@@ -45,5 +56,26 @@ function append(args) {
   list = list.concat(args);
 }
 
-// TODO: implement more commands here ...
+function insert(index, string) {
+    if (index < 0 || index > list.length) {
+        return "Error: invalid index " + index;
+    }
+    
+    list.splice(index, 0, string);
+   
+}
 
+function rollLeft() {
+
+    
+    let firstItem = list.shift();
+    list.push(firstItem);
+   
+}
+
+function rollRight() {
+
+    let lastItem = list.pop();
+    list.unshift(lastItem);
+    
+}
