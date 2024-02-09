@@ -29,11 +29,9 @@ function processCommand(cmd) {
       return append(cmdArgs);
       break;
 
-    // TODO: process more commands here ...
-
-    // case "anotherCommand":
-    //   return anotherCommand(cmdArgs);
-    //   break;
+    case "prepend":
+      return prepend(cmdArgs);
+      break;
 
     default:
       return "Error: invalid command";
@@ -45,5 +43,6 @@ function append(args) {
   list = list.concat(args);
 }
 
-// TODO: implement more commands here ...
-
+function prepend(args) {
+  list = list.unshift(args);
+}
