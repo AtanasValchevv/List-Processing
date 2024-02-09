@@ -28,6 +28,14 @@ function processCommand(cmd) {
     case "append":
       return append(cmdArgs);
       break;
+
+
+    case "prepend":
+      return prepend(cmdArgs);
+      break;
+
+    case "delete":
+      return deleteIndex(cmdArgs);
       
     case "insert":
       let index = parseInt(cmdArgs.shift());
@@ -44,8 +52,12 @@ function processCommand(cmd) {
       } else {
         return "Error: invalid direction for roll command";
       }
+
       break;
 
+    case "end":
+      console.log("Finished");
+      break;
     default:
       return "Error: invalid command";
       break;
@@ -55,6 +67,18 @@ function processCommand(cmd) {
 function append(args) {
   list = list.concat(args);
 }
+
+
+function prepend(args) {
+  list = list.unshift(args);
+}
+
+function deleteIndex(index, list) {
+  if (index < 0 || index >= list.length) {
+      console.log(`Error: invalid index ${index}`);
+      return;
+  }
+  list.splice(index, 1);
 
 function insert(index, string) {
     if (index < 0 || index > list.length) {
@@ -71,6 +95,7 @@ function rollLeft() {
     let firstItem = list.shift();
     list.push(firstItem);
    
+
 }
 
 function rollRight() {
