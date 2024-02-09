@@ -47,3 +47,13 @@ function append(args) {
 
 // TODO: implement more commands here ...
 
+function sort(){
+  list.sort();
+}
+function reverse(){
+  list.reverse();
+}
+function count(){
+  const count = result.filter(item => item === params[0]).length;
+  return count;
+}
